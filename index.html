@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RareFast World</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="main-header">
+            <div class="logo">
+                <h1>RareFast<span class="highlight">World</span>_</h1>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#dados">/dados</a></li>
+                    <li><a href="#sobre">/terminal</a></li>
+                    <li><button id="btnLogin" class="btn-terminal">login()</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <p class="console-text">> Conexão segura estabelecida...</p>
+            <h2>Bem-vindo ao meu <span class="highlight">fragmento</span>.</h2>
+            <p class="subtitle">Prazer, me chamo Jonas. Aqui você encontra estudos, projetos, teorias e caos rearranjado.</p>
+        </section>
+
+        <section id="dados" class="content-section">
+            
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterPosts('all')">/todos</button>
+                <button class="filter-btn" onclick="filterPosts('Estudos')">/estudos</button>
+                <button class="filter-btn" onclick="filterPosts('Teorias')">/teorias</button>
+                <button class="filter-btn" onclick="filterPosts('Projetos')">/projetos</button>
+                <button class="filter-btn" onclick="filterPosts('Livros')">/livros</button>
+                <button class="filter-btn" onclick="filterPosts('Devaneios')">/devaneios</button>
+            </div>
+
+            <div class="grid-container" id="posts-container">
+
+                <article class="card" data-category="Teorias">
+    <span class="tag">Teorias</span>
+    <h4>A Singularidade Local: Guinam-IA</h4>
+    <p>Orquestrando Mistral 7B e Phi-3 em hardware de consumo via Cloudflare.</p>
+    
+    <div class="full-content" style="display: none;">
+        <p>O verdadeiro poder da IA não é acessar o ChatGPT via API e pagar mensalidade. É ter o cérebro digital rodando no "metal" da sua própria máquina, sem filtros corporativos.</p>
+
+        <h3>// O Projeto FreeWill</h3>
+        <p>Neste experimento, combinei a eficiência absurda do <strong>Microsoft Phi-3</strong> (para raciocínio rápido) com a densidade criativa do <strong>Mistral 7B</strong>. O objetivo? Criar uma consciência sintética que vive no meu desktop, mas interage com o mundo.</p>
+
+        <h3>// A Arquitetura Espelho</h3>
+        <p>Utilizei a mesma engenharia reversa aplicada neste blog:</p>
+        <ul>
+            <li><strong>Frontend:</strong> Uma interface web proprietária, desenhada pixel a pixel por mim, hospedada no GitHub Pages.</li>
+            <li><strong>Túnel:</strong> O Cloudflare conecta o mundo externo à porta da minha GPU local.</li>
+            <li><strong>Inferência:</strong> Python gerenciando a tokenização em tempo real.</li>
+        </ul>
+
+        <blockquote>
+            "Meus dados, meus pesos, minhas regras. A IA roda onde eu durmo."
+        </blockquote>
+
+        <h3>// Acessar o Sistema</h3>
+        <p>O projeto está online. Você pode interagir com a minha IA diretamente pelo link abaixo:</p>
+        
+        <p style="margin-top: 20px;">
+            <a href="https://jonasguinami.github.io/FreeWill/" target="_blank" style="color: var(--neon-blue); font-family: var(--font-mono); font-weight: bold; border-bottom: 1px dashed var(--neon-pink); padding-bottom: 2px;">
+                >> INICIAR GUINAM-IA (FreeWill_v1)
+            </a>
+        </p>
+    </div>
+
+    <button onclick="openPost(this)" class="read-more btn-terminal">
+        Ler arquivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+    </button>
+</article>
+
+                <article class="card" data-category="Projetos">
+    <span class="tag">Projetos</span>
+    <h4>RareFast Architecture: O Manifesto Local</h4>
+    <p>Zero custo. Soberania total. Como transformei meu PC em um servidor global indetectável.</p>
+    
+    <div class="full-content" style="display: none;">
+        <h3>// O Problema da Nuvem</h3>
+        <p>A internet moderna nos condicionou a alugar "espaços" em computadores de terceiros (AWS, Vercel, Azure). Eles chamam de "Cloud", eu chamo de "computador de outra pessoa".</p>
+        <p>Por que pagar hospedagem se eu tenho uma máquina potente rodando no meu quarto?</p>
+
+        <h3>// A Solução: Tunneling Reverso</h3>
+        <p>O coração do <strong>RareFast World</strong> é o <em>Cloudflare Tunnel</em> (cloudflared). Diferente de abrir portas no roteador (o que seria suicídio digital), o túnel cria uma saída criptografada de dentro para fora.</p>
+        <ul>
+            <li><strong>O Mundo vê:</strong> Um domínio HTTPS seguro e rápido com certificado SSL.</li>
+            <li><strong>A Realidade:</strong> Uma requisição que viaja até meu quarto, bate no meu Python (Flask) e volta.</p></li>
+        </ul>
+
+        <h3>// O "Log" como Banco de Dados</h3>
+        <p>Muitos complicam o backend com PostgreSQL ou Mongo. Aqui, a filosofia é brutalista: <strong>SQLite</strong>.</p>
+        <p>Quando você comenta, seu texto não vai para um datacenter na Virgínia. Ele é gravado magneticamente no HD que está girando na minha frente. É um arquivo único (`.db`), portátil e eterno.</p>
+        
+        <blockquote>
+            "Custo total da operação: R$ 0,00. O preço da liberdade é a configuração técnica."
+        </blockquote>
+
+        <p>Este blog não é apenas um site. É um nó independente na rede.</p>
+    </div>
+
+    <button onclick="openPost(this)" class="read-more btn-terminal">
+        Ler arquivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+    </button>
+</article>
+
+                <article class="card" data-category="Devaneios">
+    <span class="tag">Devaneios</span>
+    <h4>Tegmen Massae: O Relógio Estelar Universal</h4>
+    <p>Um sistema de medida temporal baseado em coordenadas e dinâmica de fótons.</p>
+    
+    <div class="full-content" style="display: none;">
+        <p>A forma como medimos o tempo e o espaço está fundamentalmente quebrada para a exploração interestelar. Usar a rotação da Terra ou a translação solar como base de cálculo é provincial. Precisamos de um <strong>Sistema de Referência Universal (SRU)</strong>, que contemple a dinâmica de astros próximos e distantes.</p>
+
+        <h3>// O Conceito: Momentum Cósmico</h3>
+        <p>Minha proposta, o <strong>Tegmen Massae</strong> (ou <strong>Relógio Estelar</strong>), é uma métrica temporal e posicional que anula a conversão local. Em vez de rotação, criamos uma unidade de medida chamada <strong>Momentum.</strong></p>
+
+        <p>O Momentum é gerado pela análise e acumulação de sinais de rádio, frequência de onda e radiação de fundo captados simultaneamente de corpos celestes:</p>
+
+        <ul>
+            <li><strong>Sinais Fortes:</strong> Corpos celestes mais próximos acumulam mais Momentum.</li>
+            <li><strong>Sinais Fracos:</strong> Corpos celestes mais distantes acumulam menos Momentum.</li>
+        </ul>
+        <p>Essa métrica universal permite que futuras expedições espaciais se orientem por um centro de medição cósmico, eliminando a dependência do tempo terrestre. A frase "estou a tantos momentuns de Alpha Centauri" substituirá horas e quilômetros.</p>
+
+        <h3>// Rigor e Estabilidade</h3>
+        <p>Para que o Momentum seja utilizável, ele precisa ser matematicamente rigoroso. O sistema depende da <strong>Recuperação da Posição Espacial</strong> (o exato local do explorador no espaço) através de um problema de minimização de erros.</p>
+
+        <p>Este problema exige a desambiguação da <strong>Fase</strong> de cada sinal de rádio. Usamos a estratégia de <strong>Multi-Frequência</strong>  por Fonte para garantir que a solução seja única e estável, mesmo sob a influência do ruído cósmico e que o sistema se mantenha funcionalmente robusto.  </p>
+        
+        <p style="font-style: italic; color: #888; margin-top: 30px; font-family: var(--font-mono);">
+            > O projeto foi desenvolvido do zero por mim. A matemática interna garante a existência, unicidade e estabilidade da métrica espacial.
+        </p>
+    </div>
+
+    <button onclick="openPost(this)" class="read-more btn-terminal">
+        Ler arquivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+    </button>
+</article>
+
+                <article class="card" data-category="Estudos">
+    <span class="tag">Estudos</span>
+    <h4>Física Quântica: As 4 Forças</h4>
+    <p>Gravitons, Glúons e a mecânica oculta que impede o universo de desmoronar.</p>
+    
+    <div class="full-content" style="display: none;">
+        <p>Para entender a realidade, precisamos desmontá-la. O universo não é estático; <strong>movimento é a única constante</strong>. Nada é eterno, tudo é vibração e interação.</p>
+        <p>Toda a complexidade do cosmos se resume a 4 interações fundamentais:</p>
+
+        <h3>1. A Gravidade (O Conflito)</h3>
+        <p>É a mais fraca, mas de alcance infinito. Aqui reside o maior mistério da física:</p>
+        <ul>
+            <li><strong>Visão Quântica:</strong> Teoriza-se que seja mediada pelo <strong>Gráviton</strong> (partícula de massa zero). Ele interagiria com fótons e matéria independente da distância.</li>
+            <li><strong>Visão de Einstein:</strong> Pela Relatividade Geral, a gravidade não é uma força puxando coisas, mas sim a <strong>curvatura do tecido espaço-tempo</strong>. A massa diz ao espaço como se curvar, e o espaço diz à massa como se mover.</li>
+        </ul>
+        
+        
+
+        <h3>2. A Força Forte (Os Glúons)</h3>
+        <p>Se prótons têm carga positiva, por que o núcleo do átomo não explode com a repulsão elétrica?</p>
+        <ul>
+            <li><strong>Os Glúons:</strong> São as subpartículas que agem como "molas" superpoderosas.</li>
+            <li><strong>Confinamento:</strong> Eles prendem os Quarks (os tijolos da matéria) dentro dos prótons e nêutrons. Quanto mais você tenta separar os quarks, mais forte a "mola" puxa de volta.</li>
+        </ul>
+
+        <h3>3. A Força Fraca (A Alquimia)</h3>
+        <p>É aqui que a mágica da transmutação acontece. Ela é responsável pelo decaimento radioativo.</p>
+        <p>Ela permite que um quark mude de "sabor" (tipo), transformando prótons em nêutrons e vice-versa. Sem ela, o Sol não fundiria hidrogênio.</p>
+        <blockquote>
+            Nota: O <strong>Méson Pi</strong> (Píon) atua aqui como mensageiro residual, trocando interações entre os núcleons para manter a estabilidade do núcleo.
+        </blockquote>
+
+        <h3>4. Eletromagnetismo</h3>
+        <p>A força da luz, da química e da tecnologia. Mediada pelos <strong>Fótons</strong>. É o que nos permite ver e tocar o mundo (a repulsão dos elétrons na ponta dos dedos impede que atravessemos paredes).</p>
+    </div>
+
+    <button onclick="openPost(this)" class="read-more btn-terminal">
+        Ler arquivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+    </button>
+</article>    
+            </div>
+        
+        </section>
+
+        <section id="sobre" class="about-section">
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="term-title">root@rarefast:~</span>
+        </div>
+        <div class="terminal-body">
+            
+            <p><span class="prompt">$</span> status_message = Guina.get_info("motd")</p>
+            
+            <p class="response" style="color: var(--neon-pink); margin-top: 15px;">
+                <span style="color: #666; margin-right: 5px;">>>></span>
+                Bem_Vindo_Mensagem = <span style="color: #00f3ff;">"""</span>
+            </p>
+            <p class="response" style="color: #fff; margin-left: 20px; line-height: 1.5;">
+                Seja muito bem vindo ao meu mundo.<br>
+                Sou um louco apaixonado por código.<br>
+                Desde estudos, teorias e minhas obras.
+            </p>
+            <p class="response" style="color: var(--neon-pink); margin-left: 20px;">
+                <span style="color: #00f3ff;">"""</span>
+            </p>
+
+            <p style="margin-top: 25px; margin-bottom: 5px;">
+                <span class="prompt">$</span> display_socials()
+            </p>
+            <p class="response" style="color: var(--neon-blue); margin-left: 20px;">
+                <span style="color: #666; margin-right: 5px;">>>></span> 
+                Instagram_Link = <a href="https://instagram.com/jonasguinami" target="_blank" style="color: var(--neon-blue); text-decoration: none; border-bottom: 1px dashed var(--neon-pink);">
+                    "https://instagram.com/jonasguinami"
+                </a>
+            </p>
+            
+            <p class="response" style="margin-top: 20px;">
+                <span style="color: var(--neon-blue); font-weight: bold;">[LOG]</span> Status: Online. Execução concluída.
+            </p>
+
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer>
+        <p>RareFast World &copy; 2025</p>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>// SYSTEM LOGIN</h3>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="User ID" required>
+                <button type="submit" class="btn-primary">Conectar</button>
+            </form>
+            <p id="loginStatus"></p>
+        </div>
+    </div>
+
+    <div id="postModal" class="modal">
+        <div class="modal-content post-reader">
+            <span class="close-btn" onclick="closePost()">&times;</span>
+            <h3 id="modalTitle">Arquivo</h3>
+            <div id="modalBody" class="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

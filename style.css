@@ -1,0 +1,456 @@
+/* =========================================
+   RAREFAST WORLD - MOBILE PERFECT v7.0
+   ========================================= */
+
+:root {
+    --bg-main: #050508;
+    --bg-card: #0e0e14;
+    --neon-blue: #00f3ff;
+    --neon-pink: #ff0055;
+    --text-white: #ffffff;
+    --text-gray: #a0a0b0;
+    --font-mono: 'Fira Code', monospace;
+    --font-sans: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg-main);
+    color: var(--text-white);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 4px;
+    overflow-x: hidden; /* Impede scroll lateral no mobile */
+}
+
+/* ====================
+   HEADER (ALINHAMENTO CORRIGIDO)
+   ==================== */
+header {
+    background: rgba(5, 5, 8, 0.95);
+    backdrop-filter: blur(12px);
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.main-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 70px;
+    
+    /* FLEXBOX PARA ALINHAMENTO PERFEITO */
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centraliza verticalmente Logo vs Menu */
+}
+
+.logo h1 {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    line-height: 1; /* Remove entrelinha extra que desalinha */
+}
+.highlight { color: var(--neon-blue); }
+
+.navbar ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center; /* Centraliza verticalmente Links vs Botão */
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    transition: 0.3s;
+    display: inline-block; /* Garante que padding/margin funcionem */
+}
+.navbar a:hover { color: var(--neon-blue); }
+
+/* BOTÃO DO MENU (LOGIN) */
+.btn-terminal {
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 6px 16px; /* Altura ajustada para alinhar com texto */
+    border-radius: 50px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+.btn-terminal:hover { background: rgba(0,243,255,0.1); box-shadow: 0 0 10px rgba(0,243,255,0.2); }
+
+/* ====================
+   HERO SECTION
+   ==================== */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.hero h2 { font-size: 3.5rem; margin: 15px 0; line-height: 1.1; letter-spacing: -1px; }
+.console-text { font-family: var(--font-mono); color: var(--neon-blue); margin-bottom: 10px; font-size: 0.9rem; }
+.subtitle { color: var(--text-gray); font-size: 1.1rem; }
+
+/* ====================
+   FILTROS & CONTEÚDO
+   ==================== */
+.content-section { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Permite quebrar linha no mobile */
+    margin-bottom: 50px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid #333;
+    color: var(--text-gray);
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+.filter-btn:hover, .filter-btn.active {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    background: rgba(0,243,255,0.05);
+}
+
+/* ====================
+   GRID CARDS (RESPONSIVO)
+   ==================== */
+.grid-container {
+    display: grid;
+    /* Minmax 280px garante que cabe em iPhone SE */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    align-items: start; 
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    position: relative;
+}
+.card:hover { border-color: var(--neon-blue); transform: translateY(-5px); }
+
+.tag {
+    align-self: flex-start;
+    background: var(--neon-pink);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.card h4 { font-size: 1.4rem; margin-bottom: 10px; color: white; }
+.card p { font-size: 0.95rem; color: var(--text-gray); margin-bottom: 25px; line-height: 1.6; }
+.full-content { display: none; }
+
+/* BOTÃO LER ARQUIVO */
+.read-more {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    border: 1px solid #333;
+    background: transparent;
+    color: var(--text-gray);
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    transition: 0.3s;
+}
+.read-more:hover { border-color: var(--neon-blue); color: var(--neon-blue); }
+.read-more svg { width: 20px; height: 20px; }
+
+/* ====================
+   TERMINAL (SOBRE)
+   ==================== */
+.about-section { padding: 40px 20px; max-width: 900px; margin: 0 auto 60px auto; }
+.terminal-window { background: #000; border: 1px solid #333; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.terminal-header { background: #111; padding: 12px 15px; display: flex; align-items: center; border-bottom: 1px solid #222; }
+.dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; display: inline-block; }
+.dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+.term-title { margin-left: auto; color: #555; font-size: 0.75rem; font-family: var(--font-mono); }
+.terminal-body { padding: 30px; font-family: var(--font-mono); font-size: 0.9rem; color: #ccc; }
+.prompt { color: var(--neon-blue); margin-right: 10px; }
+
+/* ====================
+   COMENTÁRIOS & FORMULÁRIO
+   ==================== */
+.comments-section { margin-top: 25px; padding-top: 25px; border-top: 1px dashed #333; display: none; }
+.comments-section h5 { color: var(--neon-blue); font-family: var(--font-mono); font-size: 0.75rem; margin-bottom: 15px; letter-spacing: 1px; }
+
+.comment-list { list-style: none; margin-bottom: 15px; }
+.comment-item {
+    background: rgba(255,255,255,0.03);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border-left: 2px solid #444;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.comment-author { font-size: 0.85rem; color: var(--neon-blue); font-family: var(--font-mono); font-weight: bold; display: flex; justify-content: space-between; }
+.comment-date { font-weight: normal; color: #666; font-size: 0.7rem; }
+.hidden-comment { display: none; }
+
+/* INPUT + BOTÃO REDONDO */
+.comment-form { display: flex; gap: 10px; align-items: center; }
+.comment-input {
+    flex: 1;
+    background: var(--bg-main);
+    border: 1px solid #444;
+    border-radius: 50px;
+    padding: 0 20px;
+    height: 50px; /* Altura fixa */
+    color: white;
+    font-family: var(--font-sans);
+    outline: none;
+    font-size: 16px; /* Evita zoom no iPhone */
+}
+.comment-input:focus { border-color: var(--neon-blue); }
+
+.btn-send {
+    width: 50px; height: 50px; /* Círculo Perfeito */
+    border-radius: 50%;
+    border: none;
+    background: var(--neon-pink);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+    flex-shrink: 0; /* Não esmaga no mobile */
+    box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
+}
+.btn-send:hover { transform: scale(1.1); background: #ff1f6d; }
+.btn-send svg { width: 24px; height: 24px; } /* Ícone grande */
+
+/* BOTÃO VER MAIS (CORRIGIDO E ESPAÇADO) */
+.load-more-btn {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px dashed #444; /* Borda tracejada sutil */
+    color: #888;
+    
+    /* ESPAÇAMENTO PERFEITO */
+    margin-top: 15px;    /* Afasta do último comentário */
+    margin-bottom: 30px; /* AFASTA DO INPUT DE MENSAGEM (O PULO DO GATO) */
+    
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    border-radius: 12px;
+    transition: 0.3s;
+    
+    /* Centraliza ícone e texto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.load-more-btn:hover {
+    color: var(--neon-blue);
+    border-color: var(--neon-blue);
+    background: rgba(0, 243, 255, 0.05);
+}
+
+/* ====================
+   MODAIS
+   ==================== */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+.modal-content {
+    background: #0e0e14; border: 1px solid var(--neon-blue); padding: 30px;
+    border-radius: 20px; width: 90%; max-width: 600px;
+    position: relative; max-height: 85vh; overflow-y: auto;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+}
+.close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: #666; line-height: 0.5; }
+#loginForm input { width: 100%; padding: 15px; margin-bottom: 15px; background: #000; border: 1px solid #333; color: white; border-radius: 8px; outline: none; }
+.btn-primary { width: 100%; padding: 12px; background: var(--neon-blue); color: black; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; font-family: var(--font-mono); }
+
+/* FOOTER */
+footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; margin-top: 40px; border-top: 1px solid #111; }
+
+/* ====================
+   ⚡ MOBILE OPTIMIZATIONS (A Mágica)
+   ==================== */
+@media (max-width: 768px) {
+    /* 1. Header Stacked e Centralizado */
+    .main-header {
+        height: auto;
+        flex-direction: column;
+        padding: 20px 0;
+        gap: 15px;
+    }
+
+    .navbar ul {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* 2. Hero Texto Menor */
+    .hero { padding: 60px 20px; }
+    .hero h2 { font-size: 2.2rem; } /* Fonte menor pra não quebrar */
+    .subtitle { font-size: 1rem; }
+
+    /* 3. Filtros scrolláveis ou wrap bonito */
+    .filter-container { gap: 8px; }
+    .filter-btn { padding: 6px 14px; font-size: 0.8rem; }
+
+    /* 4. Cards Compactos */
+    .card { padding: 20px; }
+    .card h4 { font-size: 1.25rem; }
+
+    /* 5. Comentários Mobile */
+    .comment-item { padding: 12px; }
+    .btn-send { width: 45px; height: 45px; } /* Levemente menor mas ainda clicável */
+    .comment-input { height: 45px; }
+
+    /* 6. Modais Full Width */
+    .modal-content { width: 95%; padding: 25px 15px; }
+}
+
+/* ====================
+   ⚡ MOBILE OPTIMIZATIONS (A Mágica)
+   ==================== */
+@media (max-width: 768px) {
+    /* ... (outras regras mobile mantidas) ... */
+
+    /* CORREÇÃO DO TERMINAL NO MOBILE */
+    .terminal-window {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .terminal-body {
+        /* Permite quebra de linha de código e texto longos */
+        word-break: break-word; 
+    }
+    
+    /* Garante que o prompt "$" e o conteúdo tenham espaço suficiente */
+    .terminal-body p {
+        flex-wrap: wrap; /* Caso a linha seja muito longa, ele quebra */
+    }
+
+    /* Reduz o tamanho da fonte do terminal para caber mais */
+    .terminal-body {
+        font-size: 0.8rem;
+        padding: 20px 15px;
+    }
+    
+    /* Reduz a margem do texto Python no mobile */
+    .terminal-body .response {
+        margin-left: 10px !important;
+    }
+
+    /* Garante que o link do Instagram quebre corretamente */
+    .terminal-body a {
+        display: block; /* Transforma o link em bloco para ocupar a linha toda */
+        word-break: break-all;
+    }
+    
+    /* ... (restante das regras mobile) ... */
+}
+
+/* =========================================
+   TIPOGRAFIA DO LEITOR DE ARQUIVO (MODAL)
+   ========================================= */
+
+.modal-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem; /* Fonte levemente maior para leitura */
+    color: #e0e0e0;     /* Branco suave (não cansa a vista) */
+    line-height: 1.8;   /* Altura da linha (respiro) */
+    padding: 10px 5px;
+}
+
+/* Espaço entre parágrafos (ESSENCIAL) */
+.modal-body p {
+    margin-bottom: 25px; 
+    text-align: left;
+}
+
+/* Títulos dentro do texto */
+.modal-body h3, .modal-body h2 {
+    color: var(--neon-blue);
+    font-family: var(--font-mono);
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    border-bottom: 1px dashed #333;
+    padding-bottom: 10px;
+}
+
+/* Listas (ul/ol) bonitas e indentadas */
+.modal-body ul, .modal-body ol {
+    margin-bottom: 25px;
+    padding-left: 25px;
+    background: rgba(255,255,255,0.03); /* Fundo sutil na lista */
+    padding: 20px 20px 20px 40px;
+    border-radius: 10px;
+    border-left: 3px solid var(--neon-pink);
+}
+
+.modal-body li {
+    margin-bottom: 10px;
+    color: #ccc;
+}
+.modal-body li::marker {
+    color: var(--neon-pink); /* Bolinha da lista rosa */
+}
+
+/* Negrito Neon */
+.modal-body strong {
+    color: var(--text-white);
+    font-weight: 700;
+}
+
+/* Citações / Quotes */
+.modal-body blockquote {
+    font-style: italic;
+    color: var(--text-gray);
+    border-left: 4px solid var(--neon-blue);
+    margin: 30px 0;
+    padding-left: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
