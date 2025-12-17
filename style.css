@@ -7,6 +7,7 @@
     --bg-card: #0e0e14;
     --neon-blue: #00f3ff;
     --neon-pink: #ff0055;
+    --neon-purple: #9d33ff;
     --text-white: #ffffff;
     --text-gray: #a0a0b0;
     --font-mono: 'Fira Code', monospace;
@@ -20,9 +21,32 @@ body {
     color: var(--text-white);
     font-family: var(--font-sans);
     line-height: 1.6;
-    background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    min-height: 100vh;
     background-size: 100% 4px;
     overflow-x: hidden; /* Impede scroll lateral no mobile */
+    background-image: 
+        /* Camada Escura: Escurece a imagem em 70% */
+        linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 1)),
+        /* Imagem .JPG */
+        url('fundo.jpg');
+    
+    /* 2. Garante que a imagem ocupe toda a tela e não se repita */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Opcional: faz a imagem ficar fixa ao rolar */
+
+    /* 3. Garante que a cor de fundo (bg-main) seja a base se a imagem não carregar */
+    background-color: var(--bg-main);
+    transition: background-size 0.2s ease-out; 
+}
+
+/* Adicione esta regra de animação para o Zoom de Apresentação */
+@keyframes presentation-zoom {
+    0% { transform: scale(1.05); } /* Começa 5% maior */
+    100% { transform: scale(1.0); } /* Volta ao tamanho normal */
+}
+body.loaded {
+    animation: presentation-zoom 1s ease-out forwards;
 }
 
 /* ====================
@@ -52,7 +76,71 @@ header {
     font-size: 1.4rem;
     line-height: 1; /* Remove entrelinha extra que desalinha */
 }
-.highlight { color: var(--neon-blue); }
+
+.highlight {
+
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .04em;
+    animation: glitch-core 3s infinite steps(1);
+}
+
+.highlight::before,
+.highlight::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .85;
+    mix-blend-mode: screen;
+}
+
+/* camada azul */
+.highlight::before {
+    color: var(--neon-blue);
+    text-shadow:
+        -2px 0 var(--neon-blue),
+        2px 0 var(--neon-purple);
+    animation: glitch-blue 2.6s infinite linear alternate-reverse;
+}
+
+/* camada rosa */
+.highlight::after {
+    color: var(--neon-pink);
+    text-shadow:
+        2px 0 var(--neon-pink),
+        -2px 0 var(--neon-purple);
+    animation: glitch-pink 2.2s infinite linear alternate;
+}
+
+/* ========= KEYFRAMES ========= */
+
+@keyframes glitch-core {
+    0%   { transform: none; }
+    2%   { transform: skew(.6deg); }
+    4%   { transform: translateX(-1px); }
+    6%   { transform: none; }
+    100% { transform: none; }
+}
+
+@keyframes glitch-blue {
+    0%   { clip-path: inset(0 0 85% 0); transform: translate(-1px, 0); }
+    12%  { clip-path: inset(12% 0 60% 0); }
+    22%  { clip-path: inset(78% 0 6% 0); transform: translate(2px, -1px); }
+    32%  { clip-path: inset(0 0 0 0); }
+    100% { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes glitch-pink {
+    0%   { clip-path: inset(65% 0 8% 0); transform: translate(1px, 0); }
+    14%  { clip-path: inset(18% 0 45% 0); }
+    24%  { clip-path: inset(0 0 82% 0); transform: translate(-2px, 1px); }
+    34%  { clip-path: inset(0 0 0 0); }
+    100% { clip-path: inset(0 0 0 0); }
+}
+
 
 .navbar ul {
     display: flex;
@@ -101,7 +189,26 @@ header {
     margin: 0 auto;
 }
 .hero h2 { font-size: 3.5rem; margin: 15px 0; line-height: 1.1; letter-spacing: -1px; }
-.console-text { font-family: var(--font-mono); color: var(--neon-blue); margin-bottom: 10px; font-size: 0.9rem; }
+.console-text {
+    font-family: var(--font-mono);
+    color: var(--neon-blue);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* cursor */
+.console-text::after {
+    content: "|";
+    margin-left: 2px;
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
 .subtitle { color: var(--text-gray); font-size: 1.1rem; }
 
 /* ====================
@@ -183,9 +290,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 12px 20px;
-    border: 1px solid #333;
+    border: 1px solid var(--neon-pink);
     background: transparent;
-    color: var(--text-gray);
+    color: var(--neon-pink);
     border-radius: 12px;
     cursor: pointer;
     font-family: var(--font-mono);
@@ -258,7 +365,11 @@ header {
     box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
 }
 .btn-send:hover { transform: scale(1.1); background: #ff1f6d; }
-.btn-send svg { width: 24px; height: 24px; } /* Ícone grande */
+.btn-send svg {
+    width: 26px;
+    height: 26px;
+    transform: translate(-2px, -1px);
+ } 
 
 /* BOTÃO VER MAIS (CORRIGIDO E ESPAÇADO) */
 .load-more-btn {
@@ -291,26 +402,63 @@ header {
     background: rgba(0, 243, 255, 0.05);
 }
 
-/* ====================
-   MODAIS
-   ==================== */
-.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+/* =========================================================
+   MODAIS (SOLUÇÃO FINAL PARA BOTÃO FIXO NO CARTÃO ROLÁVEL)
+   ========================================================= */
+
+/* 1. O CONTEINER PRINCIPAL (Modal) - Fundo Preto */
+.modal { 
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; 
+    backdrop-filter: blur(5px);
+}
+
+/* 2. O CARTÃO CENTRALIZADO (.modal-content) */
 .modal-content {
     background: #0e0e14; border: 1px solid var(--neon-blue); padding: 30px;
     border-radius: 20px; width: 90%; max-width: 600px;
-    position: relative; max-height: 85vh; overflow-y: auto;
+    position: relative; 
+    
+    /* Define o limite MÁXIMO do cartão e desliga a rolagem dele */
+    max-height: 85vh; 
+    overflow-y: hidden; /* <--- IMPEDE QUE O CARTÃO PRINCIPAL ROLE */
+    
     box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+    /* Remova qualquer padding-bottom que possa interferir na altura */
 }
-.close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: #666; line-height: 0.5; }
-#loginForm input { width: 100%; padding: 15px; margin-bottom: 15px; background: #000; border: 1px solid #333; color: white; border-radius: 8px; outline: none; }
-.btn-primary { width: 100%; padding: 12px; background: var(--neon-blue); color: black; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; font-family: var(--font-mono); }
 
-/* FOOTER */
-footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; margin-top: 40px; border-top: 1px solid #111; }
+/* 3. O BOTÃO DE FECHAR (FICA ABSOLUTO AO CARTÃO) */
+.close-btn { 
+    position: absolute; 
+    top: 20px; 
+    right: 25px; 
+    font-size: 2rem; 
+    cursor: pointer; 
+    color: #666; 
+    line-height: 0.5;
+    z-index: 1002; /* Fica acima de tudo */
+}
+.close-btn:hover { color: var(--neon-pink); }
 
-/* ====================
-   ⚡ MOBILE OPTIMIZATIONS (A Mágica)
-   ==================== */
+/* 4. O CORPO DO CONTEÚDO (APENAS ESTE ELEMENTO VAI ROLAR) */
+.modal-body { 
+    /* Define a área de rolagem baseada no tamanho do cartão */
+    max-height: calc(85vh - 120px); 
+    overflow-y: auto; /* <--- FORÇA A ROLAGEM ACONTECER AQUI DENTRO */
+    padding-right: 15px; /* Compensa a barra de rolagem */
+
+    /* Regras de tipografia */
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem; 
+    color: #e0e0e0;     
+    line-height: 1.8;   
+    padding-top: 10px;
+}
+
+
+/* ==========================================================
+   ⚡ MOBILE OPTIMIZATIONS (A Mágica) - FINAL REVISADO
+   ========================================================== */
 @media (max-width: 768px) {
     /* 1. Header Stacked e Centralizado */
     .main-header {
@@ -328,7 +476,7 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; marg
 
     /* 2. Hero Texto Menor */
     .hero { padding: 60px 20px; }
-    .hero h2 { font-size: 2.2rem; } /* Fonte menor pra não quebrar */
+    .hero h2 { font-size: 2.2rem; } 
     .subtitle { font-size: 1rem; }
 
     /* 3. Filtros scrolláveis ou wrap bonito */
@@ -340,67 +488,72 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; marg
     .card h4 { font-size: 1.25rem; }
 
     /* 5. Comentários Mobile */
-    .comment-item { padding: 12px; }
-    .btn-send { width: 45px; height: 45px; } /* Levemente menor mas ainda clicável */
-    .comment-input { height: 45px; }
+    .comment-item { 
+        padding: 12px; 
+    }
+    
+    .btn-send svg {
+        width: 26px;
+        height: 26px;
+        transform: translate(-2px, -1px);
+    }
+    .comment-input {height: 45px;
+    }
 
     /* 6. Modais Full Width */
-    .modal-content { width: 95%; padding: 25px 15px; }
-}
+    .modal-content { 
+        width: 95%; 
+        padding: 25px 15px; /* Seu padding original mobile */
+        /* Importante: Remova qualquer padding-right aqui se ele estiver empurrando o título! */
+    }
+    
+    /* === CORREÇÃO DO CABEÇALHO DO MODAL === */
+    
+    /* Move o botão X para ficar mais junto do canto */
+    .close-btn {
+        top: 15px; /* Sobe um pouco */
+        right: 15px; /* Mais perto da borda */
+        font-size: 2rem; /* Menor para não dominar */
+        z-index: 1003;
+    }
+    
+    /* Garante que o título do modal não bata no X */
+    #modalTitle {
+        font-size: 1.4rem; /* Um pouco menor */
+        /* Adiciona margem à direita para o título não ir pra baixo do X */
+        padding-right: 40px; 
+    }
+    
+    /* === CORREÇÃO DO TERMINAL NO MOBILE === */
 
-/* ====================
-   ⚡ MOBILE OPTIMIZATIONS (A Mágica)
-   ==================== */
-@media (max-width: 768px) {
-    /* ... (outras regras mobile mantidas) ... */
-
-    /* CORREÇÃO DO TERMINAL NO MOBILE */
     .terminal-window {
         max-width: 100%;
         margin: 0;
     }
 
     .terminal-body {
-        /* Permite quebra de linha de código e texto longos */
         word-break: break-word; 
-    }
-    
-    /* Garante que o prompt "$" e o conteúdo tenham espaço suficiente */
-    .terminal-body p {
-        flex-wrap: wrap; /* Caso a linha seja muito longa, ele quebra */
-    }
-
-    /* Reduz o tamanho da fonte do terminal para caber mais */
-    .terminal-body {
         font-size: 0.8rem;
         padding: 20px 15px;
     }
     
-    /* Reduz a margem do texto Python no mobile */
+    .terminal-body p {
+        flex-wrap: wrap;
+    }
+
     .terminal-body .response {
         margin-left: 10px !important;
     }
 
-    /* Garante que o link do Instagram quebre corretamente */
     .terminal-body a {
-        display: block; /* Transforma o link em bloco para ocupar a linha toda */
+        display: block; 
         word-break: break-all;
     }
-    
-    /* ... (restante das regras mobile) ... */
 }
 
 /* =========================================
    TIPOGRAFIA DO LEITOR DE ARQUIVO (MODAL)
    ========================================= */
-
-.modal-body {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.05rem; /* Fonte levemente maior para leitura */
-    color: #e0e0e0;     /* Branco suave (não cansa a vista) */
-    line-height: 1.8;   /* Altura da linha (respiro) */
-    padding: 10px 5px;
-}
 
 /* Espaço entre parágrafos (ESSENCIAL) */
 .modal-body p {
@@ -454,3 +607,89 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; marg
     font-size: 0.9rem;
 }
 
+/* =========================================================
+   MODAL LOGIN 
+   ========================================================= */
+
+   .modal-content-login {
+    background: #0e0e14; border: 1px solid var(--neon-blue); padding: 30px;
+    border-radius: 20px; width: 90%; max-width: 600px;
+    position: relative; 
+    max-height: 85vh; 
+    overflow-y: hidden; 
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+}
+
+/* Título (SYSTEM LOGIN) */
+.modal-content-login h3 {
+    color: var(--neon-pink);
+    font-family: var(--font-mono);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+/* Input (User ID) */
+#loginForm input { 
+    width: 100%; 
+    padding: 15px; 
+    margin-bottom: 20px; 
+    background: var(--bg-main); /* Fundo muito escuro */
+    border: 1px solid #333; 
+    color: white; 
+    border-radius: 8px; 
+    outline: none;
+    font-family: var(--font-mono);
+    transition: 0.3s;
+}
+#loginForm input:focus { 
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 8px var(--neon-blue);
+}
+
+/* Botão Conectar (Ação Primária) */
+.btn-primary { 
+    width: 100%; 
+    padding: 12px; 
+    background: var(--neon-pink); 
+    color: white; 
+    font-weight: bold; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-family: var(--font-mono); 
+    transition: 0.3s;
+}
+.btn-primary:hover {
+    background: var(--bg-main); /* Fundo escurece para o preto principal */
+    color: var(--neon-pink); /* Fonte fica com a cor de alerta */
+    border: 1px solid var(--neon-pink); /* Borda pink suave */
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.5); /* Leve brilho de alerta */
+}
+
+/* Status (Mensagens de Erro/Conexão) */
+#loginStatus {
+    margin-top: 15px;
+    text-align: center;
+    font-family: var(--font-mono);
+    color: var(--neon-pink); /* Usa a cor de alerta */
+    font-size: 0.85rem;
+}
+
+
+
+
+/* ====================
+   FOOTER (ESTILO TERMINAL)
+   ==================== */
+footer { 
+    text-align: center; 
+    padding: 40px; 
+    color: white; 
+    font-size: 0.8rem; 
+    margin-top: 40px; 
+    /* Linha de código tracejada como separador */
+    border-top: 1px dashed var(--text-gray); 
+    font-family: var(--font-mono);
+}
