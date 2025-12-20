@@ -2,15 +2,17 @@
    RAREFAST SYSTEM CONTROLLER (Unified)
    ========================================================= */
 
-const API_BASE_URL = "https://saints-sanyo-stretch-outputs.trycloudflare.com";
+const API_BASE_URL = "https://individually-texas-rainbow-don.trycloudflare.com";
 
 let userSession = { isLoggedIn: false, username: 'visitante' };
 
 // Estado Global da Grid (Controla o que está visível)
+const savedLimit = parseInt(localStorage.getItem('rarefast_limit')) || 3;
+
 let gridState = {
     category: 'all',
     searchTerm: '',
-    limit: 3 // Começa mostrando 3 itens
+    limit: savedLimit // <--- MUDANÇA AQUI: Usa a variável carregada
 };
 
 /* --- 1. INICIALIZAÇÃO --- */
@@ -62,6 +64,15 @@ window.clearSearch = function() {
     renderGrid(); // Atualiza a grid para mostrar tudo de novo
 };
 
+window.changeLimit = function(delta) {
+    gridState.limit += delta;
+    if (gridState.limit < 3) gridState.limit = 3; 
+    
+    // <--- ADIÇÃO NOVA: Salva o novo número no navegador
+    localStorage.setItem('rarefast_limit', gridState.limit);
+    
+    renderGrid();
+};
 
 // Chamado pelos botões de filtro
 window.filterPosts = function(category) {
@@ -83,13 +94,6 @@ window.filterPosts = function(category) {
         }
     });
 
-    renderGrid();
-};
-
-// Chamado pelos botões [+] Carregar Mais e [-] Menos
-window.changeLimit = function(delta) {
-    gridState.limit += delta;
-    if (gridState.limit < 3) gridState.limit = 3; // Nunca mostra menos que 3
     renderGrid();
 };
 
