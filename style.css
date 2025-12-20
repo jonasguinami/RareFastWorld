@@ -45,6 +45,13 @@ body {
     0% { transform: scale(1.05); } /* Começa 5% maior */
     100% { transform: scale(1.0); } /* Volta ao tamanho normal */
 }
+
+body::before {
+    position: fixed;
+    background: url('fundo.jpg') no-repeat center center / cover;
+    pointer-events: none;
+}
+
 body.loaded {
     animation: presentation-zoom 1s ease-out forwards;
 }
@@ -675,6 +682,185 @@ header {
     font-family: var(--font-mono);
     color: var(--neon-pink); /* Usa a cor de alerta */
     font-size: 0.85rem;
+}
+
+
+/* =========================================
+   RF UI SYSTEM V4 (Mobile & Desktop Polished)
+   ========================================= */
+
+/* --- CONFIGURAÇÃO GERAL DOS CONTAINERS (Pesquisa e Paginação) --- */
+/* Isso garante que ambos tenham exatamente a mesma largura e alinhamento */
+.rf-search-container,
+.rf-pagination-wrapper {
+    width: 95%; /* Mobile: Deixa 2.5% de respiro em cada lado */
+    max-width: 800px; /* Desktop: Trava largura para não ficar gigante */
+    margin-left: auto; /* Centraliza o bloco na tela */
+    margin-right: auto; /* Centraliza o bloco na tela */
+    box-sizing: border-box; /* Impede que padding estoure a tela */
+}
+
+/* --- 1. PAGINAÇÃO ARREDONADA --- */
+.rf-pagination-wrapper {
+    display: none; /* JS controla o display flex */
+    
+    /* Espaçamento Vertical */
+    margin-top: 30px; /* Aproximado do conteúdo */
+    padding-top: 20px;
+    border-top: 1px dashed rgba(51, 51, 51, 0.5); /* Linha mais sutil */
+    
+    /* Alinhamento dos Botões */
+    justify-content: center; /* Mantém os botões juntos no centro */
+    gap: 15px; /* Reduzi o gap para não ficarem distantes */
+    flex-wrap: wrap; /* Permite quebrar linha em telas muito pequenas */
+}
+
+.rf-nav-btn {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid #333;
+    color: #888;
+    
+    /* Design Pílula */
+    border-radius: 50px;
+    padding: 10px 30px; /* Mais largo nas laterais para toque fácil */
+    
+    /* Fonte e Texto */
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-transform: lowercase;
+    font-weight: 600; /* Levemente mais grosso para leitura */
+    cursor: pointer;
+    /* Flex para ícones internos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* Previne seleção de texto ao clicar rápido */
+    user-select: none;
+    transition: 0.3s;
+}
+
+/* Hover e Active */
+.rf-nav-btn:hover {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    background: rgba(0, 243, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 243, 255, 0.1);
+    transition: 0.3s;
+}
+
+.rf-nav-btn:active {
+    background: rgba(0, 243, 255, 0.15);
+}
+
+/* --- 2. BARRA DE PESQUISA REDONDA --- */
+.rf-search-container {
+    position: relative;
+    margin-bottom: 30px; /* Espaço até os filtros */
+    
+    /* Layout Interno */
+    display: flex;
+    align-items: center;
+    
+    /* Visual Glass */
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid #333;
+    border-radius: 50px;
+    padding: 8px 20px; /* Padding interno equilibrado */
+    transition: all 0.3s ease;
+}
+
+/* Foco */
+.rf-search-container:focus-within {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+    background: rgba(0, 0, 0, 0.95);
+}
+
+/* Glitch Decorativo */
+.rf-search-glitch {
+    position: absolute;
+    bottom: -1px;
+    left: 25px;
+    right: 25px;
+    height: 1px;
+    background: transparent;
+    transition: 0.4s;
+}
+
+.rf-search-container:focus-within .rf-search-glitch {
+    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+    box-shadow: 0 2px 10px var(--neon-blue);
+}
+
+/* Ícone Lupa */
+.rf-search-icon {
+    width: 18px;
+    height: 18px;
+    color: #555;
+    margin-right: 12px;
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+.rf-search-container:focus-within .rf-search-icon {
+    color: var(--neon-pink);
+    transform: scale(1.1);
+}
+
+/* Input */
+.rf-input-field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 1rem; /* Tamanho legível em mobile (evita zoom automático no iOS) */
+    padding: 5px 0;
+    outline: none;
+    text-transform: lowercase;
+}
+
+.rf-input-field::placeholder {
+    color: #444;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Botão X */
+.rf-clear-btn {
+    background: transparent;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 50%;
+    width: 30px; /* Área de toque maior para mobile */
+    height: 30px;
+    transition: 0.2s;
+    margin-left: 5px;
+}
+
+.rf-clear-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.rf-clear-btn:hover {
+    color: #ff3366;
+    background: rgba(255, 51, 102, 0.15);
+}
+
+/* --- AJUSTES RESPONSIVOS EXTRA --- */
+@media (min-width: 768px) {
+    /* No Desktop, podemos ser mais rígidos com a largura se quiser */
+    .rf-search-container,
+    .rf-pagination-wrapper {
+        width: 100%; /* Respeita o max-width de 800px definido lá em cima */
+    }
 }
 
 

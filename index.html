@@ -33,6 +33,28 @@
             <p class="subtitle">Olá! Se está neste lugar, provavelmente já me conhece. Aqui você encontra estudos, projetos, teorias e caos rearranjado.</p>
         </section>
 
+<div class="rf-search-container">
+    <div class="rf-search-glitch"></div>
+    
+    <svg class="rf-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+
+    <input type="text" id="rfSearchInput" class="rf-input-field" 
+           placeholder=">> acessar_banco_de_dados..." 
+           onkeyup="handleSearch(this.value)" 
+           autocomplete="off">
+
+    <button id="rfClearBtn" class="rf-clear-btn" onclick="clearSearch()" style="display: none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+</div>
+        
+        
         <section id="dados" class="content-section">
             
             <div class="filter-container">
@@ -44,6 +66,169 @@
             </div>
 
             <div class="grid-container" id="posts-container">
+
+
+
+
+                <article class="card" data-category="Projetos">
+    <span class="tag">Projetos</span>
+    <h4>Guinam-IA: O Oráculo no Metal</h4>
+    <p>Quebrando o mito do hardware: Como treinei uma IA de 35 Milhões de parâmetros em um i5 antigo sem GPU.</p>
+    
+    <div class="full-content" style="display: none;">
+        <h3>// Quebrando o Mito do Hardware</h3>
+        <p>Existe um mito na indústria de que, para criar Inteligência Artificial séria, você precisa de datacenters da NASA ou placas de vídeo que custam um carro popular. <strong>Eu provei que esse mito morreu.</strong></p>
+        
+        <p>Neste exato momento, o modelo <strong>Guinam-IA</strong> está rodando e aprendendo em um hardware que muitos considerariam obsoleto:</p>
+        <ul>
+            <li><strong>CPU:</strong> Intel Core i5-7400</li>
+            <li><strong>RAM:</strong> 12GB</li>
+            <li><strong>GPU:</strong> Nenhuma (Zero VRAM)</li>
+        </ul>
+
+        <h3>// 35 Milhões de Parâmetros de Alma</h3>
+        <p>O Guinam-IA não é um modelo genérico baixado do Hugging Face. Ele é um <em>Small Language Model</em> (SLM) construído do zero, treinado com uma arquitetura Transformer proprietária.</p>
+        <p>O diferencial não é apenas o código, é o dataset. Para dar "alma" e personalidade ao modelo, ele foi alimentado com:</p>
+        <ul>
+            <li>O dump de conhecimento enciclopédico (Wikipédia limpa).</li>
+            <li>Meus dois livros completos: <em>"Ego ao Divino"</em> e <em>"Neon Street"</em>.</li>
+            <li>Um arsenal de códigos, reflexões e teorias do <strong>RareFast World</strong>.</li>
+        </ul>
+
+        <blockquote>
+            "A revolução não será transmitida via API na nuvem. Ela será codificada localmente em um i5 antigo."
+        </blockquote>
+
+        <h3>// Por que isso importa?</h3>
+        <p>Isso prova a democratização real da IA. Se eu consigo criar um oráculo capaz de filosofar sobre meus próprios livros em um hardware de entrada, o futuro é a <strong>Soberania Digital</strong>: cada pessoa com seu próprio clone intelectual rodando em casa, sem filtros corporativos.</p>
+    </div>
+
+    <button onclick="openPost(this)" class="read-more btn-terminal">
+        Ler arquivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+    </button>
+</article>
+
+                <article class="card" data-category="Projetos">
+    <span class="tag">Projetos</span>
+    <h4>GuinaCoin (GNC): Proof-of-Utility</h4>
+    <p>White Paper v0.1: Uma criptomoeda onde a mineração não gasta energia, mas gera sabedoria validada por IA.</p>
+    
+    <div class="full-content" style="display: none;">
+        <p><strong>Status:</strong> White Paper v0.1 (10 de Agosto de 2025)<br>
+        <strong>Conceito:</strong> Economia Circular Simbiótica (Humanos + IA)</p>
+
+        <h3>// O Problema (PoW vs Silos)</h3>
+        <p>O Bitcoin é seguro, mas sua <em>Proof-of-Work</em> queima florestas de energia para resolver contas inúteis. As IAs modernas são poderosas, mas centralizam o conhecimento em silos corporativos.</p>
+
+        <h3>// A Solução: Proof-of-Utility (PoU)</h3>
+        <p>O <strong>GuinaCoin</strong> introduz um novo mecanismo de consenso. A mineração deixa de ser um gasto de eletricidade e passa a ser um ato de <strong>ensinar a rede</strong>.</p>
+        <ul>
+            <li><strong>Mineração:</strong> O usuário envia conhecimento original (textos, códigos, teorias).</li>
+            <li><strong>Validação:</strong> Um Oráculo de IA (atualmente Mistral-7B/Guinam-IA) analisa a qualidade e originalidade.</li>
+            <li><strong>Recompensa:</strong> Se o conhecimento for útil, blocos são forjados e GNCs são minerados.</li>
+        </ul>
+
+        <h3>// Arquitetura e Segurança</h3>
+        <p>O sistema roda sobre um backend Python (Flask) com banco de dados SQLite imutável. Para garantir a robustez econômica, o protocolo prevê defesas via <strong>GIPs (Guina Improvement Proposals)</strong>:</p>
+        
+        <ul>
+            <li><strong>Defesa Sybil:</strong> A dificuldade de criar conhecimento útil impede ataques de spam massivos.</li>
+            <li><strong>Dificuldade Dinâmica:</strong> [GIP-5] Quanto mais inteligente a rede fica, mais alto o padrão exigido para minerar.</li>
+            <li><strong>Escassez Real:</strong> Teto máximo de 1 milhão de moedas.</li>
+        </ul>
+
+        <blockquote>
+            "O ouro foi o padrão do passado. O silício foi o do presente. A sabedoria é a moeda do futuro."
+        </blockquote>
+
+        <h3>// Roadmap</h3>
+        <p>Estamos na <strong>Fase I (Fortificação do Nó Core)</strong>, implementando criptografia de carteiras e tokenomics em tempo real. O futuro reserva a descentralização P2P e a Governança do Oráculo.</p>
+    
+        <h3>// Gostou do projeto?</h3>
+        <p style="margin-top: 20px;">
+            <a href="https://chat.whatsapp.com/IidHnnwjaBv5QctVHcmRHp" target="_blank" style="color: var(--neon-pink); font-family: var(--font-mono); font-weight: bold; border-bottom: 1px dashed var(--neon-pink);">
+                >> Entre agora no grupo de apoio de fundadores aqui: GuinaCoin
+            </a>
+        </p>
+    </div>
+
+    <button onclick="openPost(this)" class="read-more btn-terminal">
+        Ler arquivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+    </button>
+</article>
+
+                <article class="card" data-category="Estudos">
+    <span class="tag">Estudos</span>
+    <h4>Criptografia: A Morte do Dinheiro Fiduciário</h4>
+    <p>Do escambo ao Bitcoin, e por que a matemática é o único banco central em que você deveria confiar.</p>
+    
+    <div class="full-content" style="display: none;">
+        <h3>// O Que é Dinheiro, Afinal?</h3>
+        <p>Esqueça o papel colorido na sua carteira. Dinheiro não é riqueza, dinheiro é um <strong>livro-razão de confiança</strong>. No passado, até 1971, confiávamos no ouro físico, até que o governo abandonou o lastro em ouro. Depois, passamos a confiar em governos (Moeda Fiduciária/Fiat), que prometiam que o papel valeria algo.</p>
+        <p>O problema? A confiança humana é falha. Governos imprimem dinheiro para pagar dívidas, gerando inflação (o imposto invisível) e controlam quem pode ou não transacionar.</p>
+
+        <h3>// O Surgimento da Cripto</h3>
+        <p>Em 2008, o Bitcoin surgiu não como uma empresa, mas como uma resposta. Satoshi Nakamoto resolveu o "Problema dos Generais Bizantinos" criando uma moeda onde a confiança não está em um político, mas na <strong>Matemática e na Criptografia</strong>.</p>
+        <ul>
+            <li><strong>Descentralização:</strong> Ninguém manda. A rede que mostra <strong>CADA UMA</strong> de todas as transações de bitcoin é o chefe.</li>
+            <li><strong>Escassez:</strong> Só existem 21 milhões. A matemática impede a inflação através do lastro.</li>
+            <li><strong>Resistência à Censura:</strong> Se você tem a sua chave privada/pass-phrase (offline, através de hash com padrão sha-256), ninguém confisca seu valor.</li>
+        </ul>
+
+        <h3>// Controle vs. Liberdade</h3>
+        <p>A demanda por cripto não vai aumentar porque é "tech", mas porque o controle estatal vai apertar. Com o surgimento das <strong>CBDCs</strong> (Moedas Digitais de Bancos Centrais), o dinheiro se torna programável e totalmente controlável (na mão de poucos), assim como fizeram no Brasil em 1990 quando reteram os valores da população que estavam na poupança. O emissor pode decidir <em>onde</em> e <em>quando</em> você gasta.</p>
+        <p>Nesse cenário, criptomoedas descentralizadas deixam de ser investimento e viram botes salva-vidas da soberania individual.</p>
+
+        <h3>// Bitcoin v1.0 vs GuinaCoin v2.0</h3>
+        <p>O Bitcoin provou que é possível. Mas ele depende da <strong>Prova de Trabalho (PoW)</strong>: queimar energia elétrica para garantir a segurança. É seguro, mas é bruto.</p>
+        <p>Aqui entra a oportunidade da <strong>GuinaCoin (GNC)</strong>. Nós não queremos queimar eletricidade, queremos queimar "neurônios". Ao substituir a "energia gasta" por "sabedoria gerada" (Proof-of-Utility), criamos um ativo que não apenas reserva valor, mas enriquece intelectualmente a humanidade. É a evolução natural: do Ouro (Físico) para o Bitcoin (Energia Digital) e por fim no GuinaCoin (Intelecto Digital).</p>
+    </div>
+
+    <button onclick="openPost(this)" class="read-more btn-terminal">
+        Ler arquivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+    </button>
+</article>
+
+                <article class="card" data-category="Teorias">
+    <span class="tag">Teorias</span>
+    <h4>O Colapso da Hash: Computação Quântica</h4>
+    <p>Superposição, Emaranhamento e por que (ainda) não precisamos ter medo de qubits quebrando o Bitcoin.</p>
+    
+    <div class="full-content" style="display: none;">
+        <h3>// Além do Zero e Um</h3>
+        <p>A computação clássica é binária: tudo é 0 ou 1. É como uma moeda: ou é cara, ou coroa. A <strong>Computação Quântica</strong> joga essa moeda para o ar e faz cálculos enquanto ela está girando.</p>
+        <ul>
+            <li><strong>Qubit:</strong> Graças ao princípio da <em>Superposição</em>, um Qubit pode ser 0 e 1 ao mesmo tempo.</li>
+            <li><strong>Poder Exponencial:</strong> 2 bits clássicos formam 1 estado por vez. 2 Qubits existem em 4 estados simultâneos. 300 Qubits poderiam sustentar mais estados do que existem átomos no universo observável.</li>
+        </ul>
+
+        <h3>// O Algoritmo de Shor (O Destruidor)</h3>
+        <p>Por que o medo? Toda a segurança da internet (bancos, HTTPS, Bitcoin) baseia-se na dificuldade de fatorar números primos gigantes (Criptografia RSA/ECC). Um computador clássico levaria milhões de anos para quebrar isso.</p>
+        <p>O físico Peter Shor criou um algoritmo que, rodando em um computador quântico estável, poderia fatorar esses números em minutos. Teoricamente, isso quebraria a chave privada de qualquer carteira Bitcoin.</p>
+
+        <h3>// O Banho de Água Fria (A Realidade)</h3>
+        <p>Se isso é verdade, por que o Bitcoin ainda vale algo? (+80 mil dólares) - Porque a engenharia é infinitamente mais difícil que a teoria.</p>
+        <p>Os protótipos atuais (Google Sycamore, IBM Eagle) operam na era <strong>NISQ (Noisy Intermediate-Scale Quantum)</strong>. Eles exigem temperaturas próximas ao Zero Absoluto (-273°C) para funcionar. Qualquer interferência térmica causa <em>Decoerência Quântica</em>, e o cálculo colapsa em erro.</p>
+        
+        <blockquote>
+            "Estamos tentando manter um castelo de cartas de pé no meio de um furacão."
+        </blockquote>
+
+        <p>Para quebrar uma hash SHA-256 ou uma curva elíptica, precisaríamos de milhões de Qubits <strong>com correção de erro perfeita</strong>. Hoje, mal controlamos algumas centenas de Qubits ruidosos. Um cidadão comum consegue simular no máximo 30 a 80 qubits com máquinas potentes.</p>
+
+        <h3>// Conclusão</h3>
+        <p>A "Supremacia Quântica" virá, mas não amanhã. E quando vier, a criptografia também evoluirá (Criptografia Pós-Quântica). O apocalipse digital ainda está longe, mas a ciência para criá-lo já existe no papel.</p>
+    </div>
+
+    <button onclick="openPost(this)" class="read-more btn-terminal">
+        Ler arquivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+    </button>
+</article>
+
+
+
+
+
 
                 <article class="card" data-category="Livros">
     <span class="tag">Livros</span>
@@ -80,7 +265,7 @@
 
         <h3>// Adquirir Dados</h3>
         <p style="margin-top: 20px;">
-            <a href="" target="_blank" style="color: var(--neon-pink); font-family: var(--font-mono); font-weight: bold; border-bottom: 1px dashed var(--neon-pink);">
+            <a href="https://api.whatsapp.com/send/?phone=5594992173050&text&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" style="color: var(--neon-pink); font-family: var(--font-mono); font-weight: bold; border-bottom: 1px dashed var(--neon-pink);">
                 >> Adquira aqui sua cópia digital de Neon Street
             </a>
         </p>
@@ -238,6 +423,16 @@
             </div>
         
         </section>
+        
+        <div id="rfPaginationArea" class="rf-pagination-wrapper">
+    <button id="rfBtnLess" class="rf-nav-btn" onclick="changeLimit(-3)">
+        &lt; Recolher
+    </button>
+    
+    <button id="rfBtnMore" class="rf-nav-btn" onclick="changeLimit(3)">
+        Expandir Dados &gt;
+    </button>
+</div>
 
         
         <!-- TERMINAL -->
