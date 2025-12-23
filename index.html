@@ -68,7 +68,75 @@
             <div class="grid-container" id="posts-container">
 
 
+                <article class="card" data-category="Estudos">
+    <span class="tag">Estudos</span>
+    <h4>Anatomia de uma IA: Do Caos ao Chatbot</h4>
+    <p>Base Model, SFT, DPO... Entenda por que seu modelo apenas "completa texto" e o roteiro técnico para transformá-lo em um Assistente.</p>
+    
+    <div class="full-content" style="display: none;">
+        <h3>// O Problema do "Bêbado Digital"</h3>
+        <p>Muitos iniciantes treinam um modelo e se frustram quando perguntam <em>"Quem descobriu o Brasil?"</em> e a IA responde <em>"e a América em 1492..."</em> em vez de dar a resposta. Isso acontece porque você tem um <strong>Base Model</strong>, não um Chatbot.</p>
+        
+        
 
+        <p>Para entender a "alma" da máquina, precisamos dissecar as três fases de vida de uma LLM (Large Language Model).</p>
+
+        <h3>1. O Base Model (A Criança Selvagem)</h3>
+        <p>É o que você obtém após o <em>Pre-training</em>. O modelo leu a internet inteira (Wikipédia, Github, Reddit), mas não aprendeu a conversar. Ele aprendeu apenas uma regra: <strong>Next Token Prediction</strong> (Prever a próxima palavra).</p>
+        <ul>
+            <li><strong>Objetivo:</strong> Reduzir a "Loss" (erro) na previsão de texto.</li>
+            <li><strong>Comportamento:</strong> Se você escrever "A receita do bolo é", ele completa com "farinha e ovos". Se você escrever "Qual a capital da França?", ele pode completar com "e qual a capital da Itália?" porque ele acha que é uma lista de perguntas.</li>
+            <li><strong>Exemplo Prático:</strong> Llama-2-base, Mistral-base, Danube-base.</li>
+        </ul>
+
+        <h3>2. SFT: Supervised Fine-Tuning (A Escola)</h3>
+        <p>Aqui transformamos o "completador de texto" em um "assistente". Pegamos o Base Model e mostramos milhares de exemplos de diálogos formatados.</p>
+        <ul>
+            <li><strong>A Mágica:</strong> O dataset muda de texto corrido para pares de <code>Instruction</code> (Pergunta) e <code>Output</code> (Resposta Ideal).</li>
+            <li><strong>Chat Templates:</strong> O modelo aprende tokens especiais para saber quando ele deve falar. Ex: <code>&lt;|user|&gt; Olá &lt;|assistant|&gt; Olá! Como posso ajudar?</code>.</li>
+            <li><strong>Resultado:</strong> O modelo para de alucinar continuações e começa a responder perguntas.</li>
+        </ul>
+
+        <h3>3. DPO/RLHF: A Etiqueta (O Refinamento)</h3>
+        <p>Mesmo com SFT, o modelo pode ser grosseiro, mentiroso ou prolixo. Aqui entra o <em>Alinhamento</em>. Antigamente usava-se RLHF (Reinforcement Learning from Human Feedback), que era caro e complexo. Hoje, usamos <strong>DPO (Direct Preference Optimization)</strong>.</p>
+        <ul>
+            <li><strong>Como funciona:</strong> Mostramos ao modelo duas respostas para a mesma pergunta: uma "Escolhida" (Boa) e uma "Rejeitada" (Ruim/Tóxica).</li>
+            <li><strong>O Ajuste:</strong> O modelo ajusta seus pesos matemáticos para aumentar a probabilidade de gerar respostas parecidas com a "Escolhida".</li>
+            <li><strong>Resultado:</strong> Um modelo seguro, útil e com o "tom de voz" que você deseja.</li>
+        </ul>
+
+        <h3>// Guia de Implementação (Roadmap Técnico)</h3>
+        <p>Quer fazer isso em casa? Eis o fluxo de trabalho moderno:</p>
+
+        <h4>Fase A: Preparar o Dataset (JSONL)</h4>
+        <p>Para SFT, você precisa converter seus livros e dados para este formato:</p>
+<pre><code>{
+"instruction": "Explique o conceito de Ego no livro...",
+"response": "No capítulo 3, o autor define Ego como..."
+}
+
+</code></pre>
+
+        <h4>Fase B: O Treinamento (LoRA/QLoRA)</h4>
+        <p>Como não temos H100s em casa, usamos <strong>LoRA (Low-Rank Adaptation)</strong>. Em vez de treinar o cérebro todo, treinamos apenas uma "camada fina" de adaptação.</p>
+        <p><strong>Ferramentas recomendadas:</strong></p>
+        <ul>
+            <li><strong>Unsloth:</strong> A biblioteca mais rápida atualmente para treinar Llama/Mistral (requer GPU NVIDIA).</li>
+            <li><strong>Llama.cpp (Server):</strong> Para quem só tem CPU (como nós), é possível fazer fine-tuning lento usando o binário <code>finetune</code>.</li>
+        </ul>
+
+        <h4>Fase C: O Merge</h4>
+        <p>Após o treino, você terá um arquivo pequeno (o adaptador LoRA). Você deve fazer o "Merge" dele com o modelo base original para criar o seu <strong>Guina-Chat-v1.gguf</strong> final.</p>
+
+        <blockquote>
+            "O Base Model é o conhecimento bruto. O SFT é a educação formal. O DPO é a sabedoria."
+        </blockquote>
+    </div>
+
+    <button onclick="openPost(this)" class="read-more btn-terminal">
+        Ler arquivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+    </button>
+</article>
 
                 <article class="card" data-category="Projetos">
     <span class="tag">Projetos</span>
@@ -150,6 +218,76 @@
                 >> Entre agora no grupo de apoio de fundadores aqui: GuinaCoin
             </a>
         </p>
+    </div>
+
+    <button onclick="openPost(this)" class="read-more btn-terminal">
+        Ler arquivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+    </button>
+</article>
+
+                <article class="card" data-category="Estudos">
+    <span class="tag">Estudos</span>
+    <h4>O Que é IA? (Guia para Leigos)</h4>
+    <p>De Alan Turing aos robôs atuais. Entenda de uma vez por todas como pedras energizadas (chips) aprenderam a pensar.</p>
+    
+    <div class="full-content" style="display: none;">
+        <h3>// Não é Mágica, é Estatística</h3>
+        <p>Se você acha que Inteligência Artificial é um robô com sentimentos igual nos filmes, esqueça. Vamos simplificar: IA é apenas <strong>matemática procurando padrões</strong>.</p>
+        <p>Imagine uma criança aprendendo o que é um "cachorro". Você não explica as regras biológicas (tem 4 patas, pelo, late). Você apenas mostra 100 fotos e diz: "Isso é cachorro". O cérebro dela cria o padrão. A IA faz exatamente isso, mas usando números.</p>
+
+        <h3>// A História: O Sonho de Automatizar o Pensamento</h3>
+        <p>A vontade de criar "algo que pensa" é antiga. Desde os ábacos na antiguidade até a calculadora de Pascal (1642), a humanidade sempre quis terceirizar o esforço mental.</p>
+        
+        <h4>O Pai da Coisa: Alan Turing</h4>
+        <p>Tudo mudou em 1950. Um gênio chamado <strong>Alan Turing</strong> publicou o artigo mais importante da história da computação: <em>"Computing Machinery and Intelligence"</em>.</p>
+        <p>Ele começou com uma pergunta simples: <strong>"Máquinas podem pensar?"</strong>. Para responder, ele propôs o famoso "Jogo da Imitação" (ou Teste de Turing):</p>
+        <blockquote>
+            "Se você conversar por texto com uma máquina e com um humano, e não conseguir distinguir quem é quem... então a máquina pode ser considerada inteligente."
+        </blockquote>
+
+        <h3>// Como Funciona? (Explicado para sua avó)</h3>
+        <p>Programação tradicional é como uma receita de bolo:</p>
+        <ul>
+            <li><strong>Humano:</strong> Escreve as regras (se a temperatura for 100 graus, desligue).</li>
+            <li><strong>Máquina:</strong> Obedece.</li>
+        </ul>
+        <p>Inteligência Artificial (Machine Learning) inverte o jogo:</p>
+        <ul>
+            <li><strong>Humano:</strong> Dá os dados (Mostra 1000 bolos prontos e as temperaturas usadas).</li>
+            <li><strong>Máquina:</strong> Descobre a regra sozinha (Ela "aprende" que 100 graus é o ideal).</li>
+        </ul>
+
+        <h3>// Roadmap da Evolução (Do Zero ao ChatGPT)</h3>
+        <p>Se você quer entender como chegamos aqui, siga esta linha do tempo simplificada:</p>
+
+        <ul style="list-style: none; padding-left: 10px; margin-top: 20px;">
+            <li style="margin-bottom: 25px; line-height: 1.8; padding-left: 15px; border-left: 2px solid #333;">
+                <strong style="color: var(--neon-blue);">1. Era Simbólica (Anos 50-80):</strong><br>
+                <em style="color:#888; display:block; margin: 5px 0;">"Se isso, então aquilo."</em>
+                A IA era apenas um monte de regras escritas à mão. Vencia no Xadrez calculando tudo, mas não sabia diferenciar um gato de um cachorro.
+            </li>
+            
+            <li style="margin-bottom: 25px; line-height: 1.8; padding-left: 15px; border-left: 2px solid #333;">
+                <strong style="color: var(--neon-blue);">2. Machine Learning (Anos 90-2010):</strong><br>
+                <em style="color:#888; display:block; margin: 5px 0;">"Aprendendo com dados."</em>
+                Começamos a usar estatística. O filtro de SPAM do seu email é isso. Ele aprendeu o que é lixo baseado no que você marcou antes.
+            </li>
+            
+            <li style="margin-bottom: 25px; line-height: 1.8; padding-left: 15px; border-left: 2px solid #333;">
+                <strong style="color: var(--neon-blue);">3. Deep Learning (2012-Presente):</strong><br>
+                <em style="color:#888; display:block; margin: 5px 0;">"Redes Neurais."</em>
+                Imitamos os neurônios do cérebro. Agora o computador consegue "ver" (reconhecer rostos) e "ouvir" (Siri/Alexa) com precisão absurda.
+            </li>
+            
+            <li style="margin-bottom: 10px; line-height: 1.8; padding-left: 15px; border-left: 2px solid #333;">
+                <strong style="color: var(--neon-blue);">4. IA Generativa (O Agora):</strong><br>
+                <em style="color:#888; display:block; margin: 5px 0;">"A Máquina Criativa."</em>
+                A IA leu tanto (como meu modelo treinado na Wikipédia) que agora ela não só classifica, ela <strong>cria</strong>. Ela escreve poemas, gera imagens e programa códigos.
+            </li>
+        </ul>
+
+        <h3>// Conclusão</h3>
+        <p>Estamos vivendo a revolução industrial da mente. Antes, criamos máquinas para substituir o músculo. Agora, criamos máquinas para amplificar o cérebro.</p>
     </div>
 
     <button onclick="openPost(this)" class="read-more btn-terminal">
